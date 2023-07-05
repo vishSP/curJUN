@@ -1,10 +1,10 @@
-
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from transliterate import translit
 
 from postapp.models import NULLABLE
+
 
 class Blog(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок')

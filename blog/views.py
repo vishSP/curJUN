@@ -54,5 +54,3 @@ def toggle_activity(request, slug):
     record_item = get_object_or_404(Blog, slug=slug)
     record_item.toggle_published()
     return redirect(reverse('blog:record_detail', args=[record_item.slug]))
-
-

@@ -1,41 +1,41 @@
 {% extends 'postapp/base.html' %}
 {% block content %}
-    <div class="container">
-        <h1 class="text-center">Пользователи</h1>
-        <table class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col" style="text-align: center">ID</th>
-                    <th scope="col" style="text-align: center">email</th>
-                    <th scope="col" style="text-align: center">Блокировка</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for item in object_list %}
-                    {% if not item.is_superuser %}
-                        <tr>
-                            <th class="text-center">{{ item.pk }}</th>
-                            <td class="text-center">{{ item.email }}</td>
-                            <td class="text-center">
-                                {% if perms.users.set_is_active %}
-                                    {% if item.is_active %}
-                                        <a href="{% url 'users:users_status' item.pk %}" class="btn btn-outline-danger">Заблокировать</a>
-                                    {% else %}
-                                        <a href="{% url 'users:users_status' item.pk %}"
-                                           class="btn btn-outline-primary">Снять блокировку</a>
-                                    {% endif %}
-                                {% endif %}
-                            </td>
-
-                        </tr>
+<div class="container">
+    <h1 class="text-center">Пользователи</h1>
+    <table class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col" style="text-align: center">ID</th>
+                <th scope="col" style="text-align: center">email</th>
+                <th scope="col" style="text-align: center">Блокировка</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in object_list %}
+            {% if not item.is_superuser %}
+            <tr>
+                <th class="text-center">{{ item.pk }}</th>
+                <td class="text-center">{{ item.email }}</td>
+                <td class="text-center">
+                    {% if perms.users.set_is_active %}
+                    {% if item.is_active %}
+                    <a href="{% url 'users:users_status' item.pk %}" class="btn btn-outline-danger">Заблокировать</a>
+                    {% else %}
+                    <a href="{% url 'users:users_status' item.pk %}"
+                       class="btn btn-outline-primary">Снять блокировку</a>
                     {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
+                    {% endif %}
+                </td>
+
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
         </table>
-    </div>
-    <style>
+    </table>
+</div>
+<style>
         .btn {
             margin-top: 5px;
             padding: 10px 20px;
@@ -53,5 +53,6 @@
             transform: translateY(-1px);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
-    </style>
+
+</style>
 {% endblock %}

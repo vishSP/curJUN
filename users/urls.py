@@ -8,7 +8,6 @@ from users.views import ProfileUpdateView, RegisterView, CustomLoginView, Custom
 
 app_name = UsersConfig.name
 
-
 urlpatterns = [
     path('', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

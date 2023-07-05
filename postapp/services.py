@@ -32,7 +32,6 @@ def send_message(mail):
 
 
 def start_mailing():
-
     mailings = Mailing.objects.all()
     print(mailings)
     for mailing in mailings:

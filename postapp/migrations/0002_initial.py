@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -18,12 +17,14 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='message',
             name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                    to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
         ),
         migrations.AddField(
             model_name='mailingattempt',
             name='mailing',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='postapp.mailing', verbose_name='рассылка'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='postapp.mailing',
+                                    verbose_name='рассылка'),
         ),
         migrations.AddField(
             model_name='mailing',
@@ -33,16 +34,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='mailing',
             name='message',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='postapp.message', verbose_name='тема письма'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='postapp.message',
+                                    verbose_name='тема письма'),
         ),
         migrations.AddField(
             model_name='mailing',
             name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                    to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
         ),
         migrations.AddField(
             model_name='client',
             name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                    to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
         ),
     ]

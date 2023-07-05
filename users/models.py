@@ -1,7 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from django.db import models
 
-
 from django.contrib.auth.models import AbstractUser, UserManager as BaseUserManager
 
 NULLABLE = {'blank': True, 'null': True}

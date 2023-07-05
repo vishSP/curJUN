@@ -14,4 +14,3 @@ class RecordAdmin(admin.ModelAdmin):
 
     republish.short_description = "Повторная публикация выбранных записей"
     actions = [republish]
-

@@ -21,6 +21,7 @@ class Client(models.Model):
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
 
+
 class Message(models.Model):
     title = models.CharField(max_length=150, verbose_name='тема письма')
     body = models.TextField(verbose_name='тело сообщения')
@@ -33,6 +34,7 @@ class Message(models.Model):
 
     def __str__(self):
         return self.subject
+
 
 class Mailing(models.Model):
     DAILY = 'daily'
@@ -75,6 +77,7 @@ class Mailing(models.Model):
                 'Can set mailing status'
             ),
         ]
+
 
 class MailingAttempt(models.Model):
     SENT = 'sent'
