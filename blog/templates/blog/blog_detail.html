@@ -1,74 +1,65 @@
 {% extends 'postapp/base.html' %}
 
 {% block content %}
-{% load tags %}
+    {% load tags %}
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-8 col-md-6 col-lg-4 bg-light p-3 rounded">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <div class="form-group text-center">
-                                <button class="btn btn-success mt-3" type="submit">Сохранить</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <div class="card text-center">
+            <div class="card-header">
+                {{ object.title }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ object.body }}</h5>
+                <img src="{% mediapath object.picture %}" class="card-img-top mx-auto d-block img-fluid" alt=""
+                     style="width: auto; height: auto;">
+                <p class="card-text">Просмотры: {{ object.views }}</p>
+                {% if perms.blog.change_blog %}
+                    <a href="{% url 'blog:update_record' object.slug %}" class="btn btn-warning">Изменить
+                        запись</a>
+                {% endif %}
+                {% if perms.blog.delete_blog %}
+                    <a href="{% url 'blog:delete_record' object.slug %}" class="btn btn-danger">Удалить
+                        запись</a>
+                {% endif %}
+                <br><br>
+
+                {% if perms.blog.set_published_blog %}
+                    {% if object.published_on == True %}
+                        <a href="{% url 'blog:toggle_activity' object.slug %}" class="btn btn-outline-danger">Снять с
+                            публикации</a>
+                    {% else %}
+                        <a href="{% url 'blog:toggle_activity' object.slug %}" class="btn btn-outline-primary">Опубликовать</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="card-footer text-muted">
+                <p class="card-text">
+                    Создана: {{ object.created_date }}<br>
+                    Опубликована: {{ object.published_on }}
+                </p>
             </div>
         </div>
     </div>
-    <style>
 
+    <style>
         .card {
+            margin-top: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 2px 4px rgba(0, 0, 0, 0.3);
-            width: 100%;
-
         }
 
-        .card-body form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-            text-align: left;
-            padding: 0 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+        .card-header {
+            font-size: 24px;
+            background-color: #eee;
             font-weight: bold;
         }
 
-        .form-group input[type="time"],
-        .form-group input[type="text"],
-        .form-group input[type="text"],
-        .form-group input[type="text"],
-        .form-group input[type="email"] {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #f1f1f1;
-            margin-bottom: 0.5rem;
-            width: 100%;
-            box-sizing: border-box;
+        .card-body {
+            text-align: center;
         }
 
-        .form-group input[type="time"]:focus,
-        .form-group input[type="text"]:focus,
-        .form-group input[type="text"]:focus,
-        .form-group input[type="text"]:focus,
-        .form-group input[type="email"]:focus {
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        .card-text {
+            font-size: 18px;
         }
 
         .btn {
